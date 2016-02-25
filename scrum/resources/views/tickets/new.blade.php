@@ -50,7 +50,13 @@
 		                            @endforeach
 	                            </select>
 
-                                <label for="ticket-description" class="col-sm-3 control-label">Desription</label>
+                                <label for="ticket-priority" class="col-sm-3 control-label">Priority</label>
+                                <input id="ticket-priority" name="priority" value="">
+
+                                <label for="ticket-est_time" class="col-sm-3 control-label">Estimated time</label>
+                                <input id="ticket-est_time" name="est_time" value="">
+
+                                <label for="ticket-description" class="col-sm-3 control-label">Description</label>
 
                                 <textarea name="description" cols="50" rows="10">Your description</textarea>
 

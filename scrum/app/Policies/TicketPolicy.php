@@ -49,6 +49,6 @@ class TicketPolicy
 	 */
 	public function update(User $user, Ticket $ticket)
 	{
-		return $user->id === $ticket->user_id || $user->role_id == 1;
+		return $user->id === $ticket->user_id || $user->role_id == 1 || $user->id === $ticket->assignee_id;
 	}
 }

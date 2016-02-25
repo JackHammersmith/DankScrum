@@ -40,6 +40,10 @@ class AuthServiceProvider extends ServiceProvider
 		    return $user->role_id == 1 || $user->role_id == 2;
 	    });
 
+        $gate->define('create', function ($user) {
+            return $user->role_id == 1 || $user->role_id == 2;
+        });
+
 	    $gate->define('update', function ($user, $ticket) {
 		    return $user->role_id == 1 || $user->id === $ticket->user_id;
 	    });

@@ -89,7 +89,7 @@ class TicketController extends Controller
         $status_array = DB::table('status')->get();
         $severity_array = DB::table('severities')->get();
         $ticket_type_array = DB::table('ticket_types')->get();
-	    $users_array = DB::table('users')->get();
+        $users_array = DB::table('users')->where('role_id', 2)->get(); // make tickets assignable to users only
 
         return view('tickets.view', [
             'ticket' => $ticket,
@@ -112,7 +112,8 @@ class TicketController extends Controller
         $status_array = DB::table('status')->get();
         $severity_array = DB::table('severities')->get();
         $ticket_type_array = DB::table('ticket_types')->get();
-        $users_array = DB::table('users')->get();
+        $users_array = DB::table('users')->where('role_id', 2)->get(); // make tickets assignable to users only
+
 
         // TODO: pass attributes of select fields to view
         return view('tickets.new', [

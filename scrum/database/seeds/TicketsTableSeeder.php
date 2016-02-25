@@ -23,7 +23,7 @@ class TicketsTableSeeder extends Seeder
             'severity_id' => 1,
             'ticket_type_id' => 1,
             'description' => str_random(50),
-            'assignee_id' => 1,
+            'assignee_id' => 2,
         ]);
 
         Ticket::create([
@@ -37,7 +37,7 @@ class TicketsTableSeeder extends Seeder
             'severity_id' => 1,
             'ticket_type_id' => 1,
             'description' => str_random(50),
-            'assignee_id' => 1,
+            'assignee_id' => 2,
         ]);
 
         Ticket::create([
@@ -51,7 +51,21 @@ class TicketsTableSeeder extends Seeder
             'severity_id' => 1,
             'ticket_type_id' => 1,
             'description' => str_random(50),
-            'assignee_id' => 1,
+            'assignee_id' => 2,
+        ]);
+
+        Ticket::create([
+            'title' => 'Ticket 4',
+            'user_id' => 1,
+            'project_id' => 1,
+            'priority' => 0.3,
+            'progress' => 0.4,
+            'est_time' => 1.2,
+            'status_id' => 1,
+            'severity_id' => 1,
+            'ticket_type_id' => 1,
+            'description' => str_random(50),
+            'assignee_id' => 3,
         ]);
 
     }
