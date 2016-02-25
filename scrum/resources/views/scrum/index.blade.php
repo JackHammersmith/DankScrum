@@ -20,7 +20,7 @@
 							<tbody>
 								@foreach ($tickets as $ticket)
 									<tr>
-										<td class="table-text"><div>{{ $ticket->title }}</div></td>
+										<td id="ticket-{{ $ticket->id }}" class="table-text"><div>{{ $ticket->title }}</div></td>
                                         <td class="table-text"><div>{{ $ticket->description }}</div></td>
                                         <td class="table-text"><div>{{ $ticket->progress }}</div></td>
                                         <td class="table-text"><div>{{ $ticket->est_time }}</div></td>

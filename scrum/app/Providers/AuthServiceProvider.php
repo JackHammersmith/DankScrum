@@ -5,6 +5,8 @@ namespace App\Providers;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
+use App\Project;
+
 class AuthServiceProvider extends ServiceProvider
 {
 	/**
@@ -28,6 +30,10 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies($gate);
 
+        $gate->define('viewAdmin', function ($user) {
+            return $user->role_id == 1;
+        });
+
 	    $gate->define('admin', function ($user) {
 		    return $user->role_id == 1;
 	    });
@@ -36,8 +42,11 @@ class AuthServiceProvider extends ServiceProvider
 		    return $user->role_id == 1;
 	    });
 
-	    $gate->define('create-ticket', function ($user) {
-		    return $user->role_id == 1 || $user->role_id == 2;
+	    $gate->define('create-ticket', function ($user, $project_id) {
+            if ($user->role_id == 1){
+                return true;
+            }
+            return $user->projects->contains($project_id);
 	    });
 
         $gate->define('create', function ($user) {

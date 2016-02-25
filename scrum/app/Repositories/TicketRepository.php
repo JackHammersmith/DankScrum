@@ -30,7 +30,7 @@ class TicketRepository
     public function byProject(Project $project)
     {
         return Ticket::where('project_id', $project->id)
-            ->orderBy('created_at', 'asc')
+            ->orderBy('priority', 'desc')
             ->get();
     }
 
@@ -43,7 +43,7 @@ class TicketRepository
 	public function forUser(User $user)
 	{
 		return Ticket::where('assignee_id', $user->id)
-			->orderBy('priority', 'asc')
+			->orderBy('priority', 'desc')
 			->get();
 	}
 }

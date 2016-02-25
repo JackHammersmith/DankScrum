@@ -51,6 +51,8 @@
 		 */
 		public function index()
 		{
+            $this->authorize('viewAdmin');
+
 			$projects = Project::all();
 			return view('admin.index', [
 				'projects' => $projects
@@ -59,6 +61,8 @@
 
         public function view()
         {
+            $this->authorize('viewAdmin');
+
             $status_array = DB::table('status')->get();
             $severity_array = DB::table('severities')->get();
             $type_array = DB::table('ticket_types')->get();

@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Role;
+use App\Project;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -33,14 +34,6 @@ class User extends Authenticatable
 		return $this->hasMany(Ticket::class);
 	}
 
-	/**
-	 * Get all projects of the user.
-	 */
-	public function projects()
-	{
-		return $this->hasMany(Project::class);
-	}
-
     /**
      * Gets role assigned to user
      *
@@ -49,5 +42,14 @@ class User extends Authenticatable
     public function role()
     {
         return $this->hasOne(Role::class);
+    }
+
+    /**
+     * Get the project assigned to the user.
+     */
+    public function projects()
+    {
+        //return $this->hasMany('App\TicketType', 'id');
+        return $this->belongsToMany(Project::class, 'users_projects', 'user_id', 'project_id');
     }
 }
