@@ -44,6 +44,6 @@ class TicketRepository
 	{
 		return Ticket::where('assignee_id', $user->id)
 			->orderBy('priority', 'desc')
-			->get();
+            ->paginate(1);
 	}
 }

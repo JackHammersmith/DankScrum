@@ -39,13 +39,9 @@
 			</button>
 
 			<!-- Branding Image -->
-			<form action="/tickets/my" method="POST">
-				{{ csrf_field() }}
-
-				<button type="submit" class="btn btn-danger">
-					<i class="fa fa-btn fa-trash"></i>My Tickets
-				</button>
-			</form>
+            <a class="navbar-brand" href="{{ url('/tickets/my') }}">
+                My Tickets
+            </a>
 			<a class="navbar-brand" href="{{ url('/projects') }}">
 				Project List
 			</a>

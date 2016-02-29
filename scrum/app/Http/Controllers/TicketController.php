@@ -16,6 +16,7 @@ use App\User;
 use DB;
 use App\Repositories\ProjectRepository;
 use App\Repositories\TicketRepository;
+use Illuminate\Support\Facades\Auth;
 
 class TicketController extends Controller
 {
@@ -33,18 +34,21 @@ class TicketController extends Controller
      */
     protected $projects;
 
-	/**
-	 * Create a new controller instance.
-	 *
-	 * @param  TicketRepository  $tickets
-	 * @return void
-	 */
-	public function __construct(TicketRepository $tickets)
-	{
-		$this->middleware('auth');
+    /**
+     * Create a new controller instance.
+     *
+     * @param  ProjectRepository  $projects
+     * @param TicketRepository $tickets
+     * @return void
+     */
+    public function __construct(ProjectRepository $projects, TicketRepository $tickets)
+    {
+        $this->middleware('auth');
 
-		$this->tickets = $tickets;
-	}
+        $this->projects = $projects;
+        $this->tickets = $tickets;
+
+    }
 
 	/**
 	 * Display a list of all of the user's tickets.
@@ -66,12 +70,11 @@ class TicketController extends Controller
 	/**
 	 * Display a list of all of the user's tickets.
 	 *
-	 * @param  Request  $request
 	 * @return Response
 	 */
-	public function myTickets(Request $request)
+	public function myTickets()
 	{
-		$user = $request->user();
+		$user = Auth::user();
 		$tickets = $this->tickets->forUser($user);
 		return view('tickets.my', [
 			'tickets' => $tickets,

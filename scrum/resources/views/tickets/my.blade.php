@@ -42,6 +42,7 @@
 
 					</div>
 				</div>
+            {!! $tickets->links() !!}
 			@endif
 		</div>
 	</div>
