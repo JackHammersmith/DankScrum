@@ -2,9 +2,12 @@
 
 use Illuminate\Database\Seeder;
 use App\Ticket;
+use Faker\Factory as Faker;
+
 
 class TicketsTableSeeder extends Seeder
 {
+
     /**
      * Run the database seeds.
      *
@@ -12,6 +15,7 @@ class TicketsTableSeeder extends Seeder
      */
     public function run()
     {
+        $faker = Faker::create();
         Ticket::create([
             'title' => 'Ticket 1',
             'user_id' => 1,
@@ -22,7 +26,7 @@ class TicketsTableSeeder extends Seeder
             'status_id' => 1,
             'severity_id' => 1,
             'ticket_type_id' => 1,
-            'description' => str_random(50),
+            'description' => $faker->text,
             'assignee_id' => 2,
         ]);
 
@@ -36,7 +40,7 @@ class TicketsTableSeeder extends Seeder
             'status_id' => 1,
             'severity_id' => 1,
             'ticket_type_id' => 1,
-            'description' => str_random(50),
+            'description' => $faker->text,
             'assignee_id' => 2,
         ]);
 
@@ -50,7 +54,7 @@ class TicketsTableSeeder extends Seeder
             'status_id' => 1,
             'severity_id' => 1,
             'ticket_type_id' => 1,
-            'description' => str_random(50),
+            'description' => $faker->text,
             'assignee_id' => 2,
         ]);
 
@@ -64,7 +68,7 @@ class TicketsTableSeeder extends Seeder
             'status_id' => 1,
             'severity_id' => 1,
             'ticket_type_id' => 1,
-            'description' => str_random(50),
+            'description' => $faker->text,
             'assignee_id' => 3,
         ]);
 

@@ -13,13 +13,31 @@ class AttributesTableSeeder extends Seeder
     public function run()
     {
 	    DB::table('status')->insert([
-		    'title' => 'new',
+		    'title' => 'Backlog',
 		    'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
 		    'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
 	    ]);
 
 	    DB::table('status')->insert([
-		    'title' => 'closed',
+		    'title' => 'To-Do',
+		    'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+		    'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+	    ]);
+
+	    DB::table('status')->insert([
+		    'title' => 'In Progress',
+		    'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+		    'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+	    ]);
+
+	    DB::table('status')->insert([
+		    'title' => 'QA',
+		    'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+		    'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
+	    ]);
+
+	    DB::table('status')->insert([
+		    'title' => 'Done',
 		    'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
 		    'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
 	    ]);

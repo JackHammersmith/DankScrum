@@ -60,5 +60,9 @@ class AuthServiceProvider extends ServiceProvider
 	    $gate->define('delete', function ($user, $ticket) {
 		    return $user->role_id == 1 || $user->id === $ticket->user_id;
 	    });
+
+        $gate->define('scrum', function ($user) {
+            return $user->role_id == 1 || $user->role_id == 2;
+        });
     }
 }

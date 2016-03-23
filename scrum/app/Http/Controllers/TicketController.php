@@ -214,23 +214,44 @@ class TicketController extends Controller
 
     /**
      * Changes the status and priority of a ticket
-     *
-     * @param Request $request
-     * @param Ticket $ticket
+     * @param  Request  $request
      */
-    public function changeStatus(Request $request, Ticket $ticket)
+    public function changeStatus(Request $request)
     {
-        $this->authorize('update', $ticket);
+        $statuses = Status::all();
+        //$this->authorize('changeStatus');
 
-	    if ($request->has('status')) {
-		    $ticket->status = $request->status;
-	    }
+        if ($request->has('data')) {
 
-	    if ($request->has('priority')) {
-		    $ticket->priority = $request->priority;
-	    }
+            $jsons = json_decode($request->data, false);
 
-        $ticket->save();
+            // TODO: fix ugly hack for data validation (send proper json data)
+            $ticketIds = array();
+            $i = 0;
+            foreach ($jsons as $json){
+                array_push($ticketIds, array());
+                foreach ($json as $js){
+                    if (property_exists($js,'ticketId')){ // TODO: fix ugly hack
+                        array_push($ticketIds[$i],$js->ticketId );
+                    }
+                }
+                $i++;
+            }
+
+            $k = 0;
+            foreach ($statuses as $status){
+                $priority = 1.00;
+                foreach($ticketIds[$k] as $ticketId){
+                    DB::table('tickets')
+                        ->where('id', intval($ticketId))
+                        ->update(['status_id' => $status->id, 'priority' => $priority]); // TODO: replace with proper model
+                    $priority = $priority - 0.01;
+                }
+                $k++;
+            }
+        }
+
+        //$ticket->save();
     }
 
 	/**

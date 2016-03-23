@@ -26,13 +26,19 @@
 //		return view('welcome');
 //	});
 
+Route::post('/ticket/status', 'TicketController@changeStatus'); // TODO: ugly hack, find proper method
+
+//Route::post('/ticket/status', 'TicketController@changeStatus');
+
 Route::group(['middleware' => ['web']], function () {
 
 	Route::get('/','DashboardController@index' )->middleware('auth');
 
     Route::get('/admin', 'AdminController@index');
-    Route::get('/admin/attributes', 'AdminController@view');
+    Route::get('/admin/attributes', 'AdminController@viewAttributes');
     Route::post('/admin/attributes', 'AdminController@addOption');
+    Route::get('/admin/users', 'AdminController@viewUsers');
+    Route::post('/admin/users', 'AdminController@editUsers');
 
 	Route::get('/projects', 'ProjectController@index');
     Route::get('/project/{project}', 'ProjectController@view');
@@ -48,10 +54,11 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/ticket/new/{project}', 'TicketController@newAction');
 	Route::post('/ticket', 'TicketController@create');
 	Route::post('/ticket/update/{ticket}', 'TicketController@update');
-    Route::post('/ticket/status', 'TicketController@changeStatus');
+    //Route::get('/ticket/status', 'TicketController@changeStatus');
 	Route::delete('/ticket/{ticket}/{project}', 'TicketController@delete');
 
     Route::get('/scrum/{project}', 'ScrumController@index');
+    Route::get('/scrum/board/{project}', 'ScrumController@scrum');
 
 	Route::auth();
 });

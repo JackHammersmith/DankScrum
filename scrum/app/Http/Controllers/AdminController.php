@@ -9,6 +9,7 @@
 
 	use App\Project;
 	use App\Status;
+    use App\User;
     use DB;
 	use App\Repositories\ProjectRepository;
 	use App\Repositories\StatusRepository;
@@ -59,7 +60,7 @@
 			]);
 		}
 
-        public function view()
+        public function viewAttributes()
         {
             $this->authorize('viewAdmin');
 
@@ -109,6 +110,53 @@
                     'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
                     'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
                 ]);
+            }
+
+            $status_array = DB::table('status')->get();
+            $severity_array = DB::table('severities')->get();
+            $type_array = DB::table('ticket_types')->get();
+
+            return view('admin.view', [
+                'statuses' => $status_array,
+                'severities' => $severity_array,
+                'ticket_types' => $type_array
+            ]);
+        }
+
+        // TODO: WIP
+        public function viewUsers()
+        {
+            $this->authorize('viewAdmin');
+
+            $users_array = User::whereNotIn('id', [1, 4])->get();
+            $projects = Project::all();
+            //$projects = Project::lists('title','id', 'user');
+            //dd($projects_array);
+            return view('admin.users', [
+                'users' => $users_array,
+                'projects' => $projects
+            ]);
+        }
+
+        /**
+         * @param Request $request
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         */
+        public function editUsers(Request $request)
+        {
+            $this->validate($request, [
+                'user' => 'required',
+                'projects' => 'required'
+            ]);
+
+            var_dump($request->projects);
+            dd($request->user);
+
+            if ($request->has('users')) {
+                $users = $request->users;
+                foreach ($users as $user){
+
+                }
             }
 
             $status_array = DB::table('status')->get();

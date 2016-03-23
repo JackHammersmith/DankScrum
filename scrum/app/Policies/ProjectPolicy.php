@@ -54,6 +54,17 @@ class ProjectPolicy
 	}
 
     /**
+     * Determine if the given user can access scrum functionality.
+     *
+     * @param  User  $user
+     * @return bool
+     */
+    public function scrum(User $user)
+    {
+        return $user->role_id == 1 || $user->role_id == 2;
+    }
+
+    /**
      * Determine if the given user can edit the given project.
      *
      * @param  User  $user

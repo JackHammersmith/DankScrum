@@ -28,5 +28,10 @@ class RolesTableSeeder extends Seeder
 		    'privilege_id' => 3,
 	    ]);
 
+        Role::create([
+            'title' => 'Teacher',
+            'privilege_id' => 4,
+        ]);
+
     }
 }

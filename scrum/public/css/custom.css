@@ -1,0 +1,95 @@
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding:4px!important;
+}
+.formrow input, .formrow select, .formrow textarea{
+    float:right;
+}
+.formrow input:after, .formrow select:after, .formrow textarea:after{
+    clear:both;
+}
+.formrow{
+    padding:5px 10px;
+}
+
+body.dragging, body.dragging * {
+    cursor: move !important;
+}
+
+.dragged {
+    position: absolute;
+    opacity: 0.5;
+    z-index: 2000;
+}
+
+ol.scrum {
+    width: 20%;
+    float: left;
+    border: 1px solid #999999;
+    padding:0;
+}
+ol.scrum:after{
+    clear:both;
+}
+
+ol.vertical {
+    margin: 0 0 9px 0;
+    min-height: 500px;
+}
+
+ol.scrum li{
+    width: 100px;
+    list-style: none;
+    height:80px;
+    padding: 5px;
+    border:1px solid
+}
+
+ol.scrum li.placeholder {
+    position: relative;
+    /** More li styles **/
+}
+ol.scrum li.placeholder:before {
+    position: absolute;
+    /** Define arrowhead **/
+}
+.status-header{
+    text-align: center;
+    background: #ddd;
+
+}
+
+ol.noscrum {
+    width: 20%;
+    float: left;
+    border: 1px solid #999999;
+    padding:0;
+}
+ol.noscrum:after{
+    clear:both;
+}
+
+ol.vertical {
+    margin: 0 0 9px 0;
+    min-height: 500px;
+}
+
+ol.noscrum li{
+    width: 100px;
+    list-style: none;
+    height:80px;
+    padding: 5px;
+    border:1px solid
+}
+
+ol.noscrum li.placeholder {
+    position: relative;
+    /** More li styles **/
+}
+ol.noscrum li.placeholder:before {
+    position: absolute;
+    /** Define arrowhead **/
+}
+
+.ticket-box{
+    min-height:50px;
+}

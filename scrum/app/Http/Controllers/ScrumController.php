@@ -54,11 +54,71 @@ class ScrumController extends Controller
 	public function index(Project $project)
 	{
         $tickets = $this->tickets->byProject($project);
+		$statuses = Status::all();
+
+		$data = array();
+
+
+		$i = 0;
+		foreach ($statuses as $status){
+
+			$data[] = array(
+				'status' => $status,
+				'tickets' => array(),
+			);
+
+			foreach ($tickets as $ticket){
+				if ($ticket->status->id == $status->id){
+					array_push($data[$i]['tickets'], $ticket);
+				}
+			}
+			$i++;
+		}
+//		dd($data);
+
+
 		return view('scrum.index', [
-			'tickets' => $tickets,
+			'scrum_data' => $data,
             'project' => $project
 		]);
 	}
+
+    /**
+     * Display a list of all of the user's tickets.
+     *
+     * @param  Project  $project
+     * @return Response
+     */
+    public function scrum(Project $project)
+    {
+        $tickets = $this->tickets->byProject($project);
+        $statuses = Status::all();
+
+        $data = array();
+
+        $i = 0;
+        foreach ($statuses as $status){
+
+            $data[] = array(
+                'status' => $status,
+                'tickets' => array(),
+            );
+
+            foreach ($tickets as $ticket){
+                if ($ticket->status->id == $status->id){
+                    array_push($data[$i]['tickets'], $ticket);
+                }
+            }
+            $i++;
+        }
+//		dd($data);
+
+
+        return view('scrum.board', [
+            'scrum_data' => $data,
+            'project' => $project
+        ]);
+    }
 
     /**
      * Changes the status of a ticket

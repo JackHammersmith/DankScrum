@@ -1,39 +1,64 @@
 @extends('layouts.app')
 
 @section('content')
+	<script src="{{ URL::asset('js/jquery-sortable.js') }}"></script>
 	<div class="container">
 		<div class="col-sm-offset-2 col-sm-8">
 
+
 			<!-- Current Tickets -->
-			@if (count($tickets) > 0)
+
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						Current Tickets
 					</div>
+                    <div id="ajaxText"></div>
 
 					<div class="panel-body">
-						<table class="table table-striped ticket-table">
-							<thead>
-								<th>Ticket</th>
-								<th>&nbsp;</th>
-							</thead>
-							<tbody>
-								@foreach ($tickets as $ticket)
-									<tr id="ticket-{{ $ticket->id }}" class="ticket">
-										<td class="table-text"><div>{{ $ticket->title }}</div></td>
-                                        <td class="table-text"><div>{{ $ticket->description }}</div></td>
-                                        <td class="table-text"><div>{{ $ticket->progress }}</div></td>
-                                        <td class="table-text"><div>{{ $ticket->est_time }}</div></td>
-										<td class="table-text"><div>{{ $ticket->status->title }}</div></td>
-										<td class="table-text"><div>{{ $ticket->severity->title }}</div></td>
-										<td class="table-text"><div>{{ $ticket->ticket_type->title }}</div></td>
-									</tr>
-								@endforeach
-							</tbody>
-						</table>
+                        @can('scrum')
+						<script type="application/javascript">
+                            var project = {{ $project->id }};
+                            refreshBoard(project);
+						</script>
+
+
+
+                        <div id="scrumBoard"></div>
+                        @else
+                        <table class="table table-striped ticket-table">
+                            <thead>
+                            <th>Scrum</th>
+                            <th>&nbsp;</th>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <div class="lanes">
+                                        @foreach($scrum_data as $data)
+
+                                        <ol id="status-{{ $data['status']->id }}" class="noscrum vertical {{ $data['status']->title }}">
+                                            <div class="status-header">{{ $data['status']->title }}</div>
+                                            @if (count($data['tickets']) > 0)
+                                            @foreach ($data['tickets'] as $ticket)
+                                            <li>
+                                                <div class="ticket-box">
+                                                    <div id="ticket-title">{{ $ticket->title }}</div>
+                                                    <div id="ticket-description">@shortify($ticket->description)</div>
+                                                </div>
+                                            </li>
+                                            @endforeach
+
+                                            @endif
+                                        </ol>
+                                        @endforeach
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        @endcan
 					</div>
 				</div>
-			@endif
 		</div>
 	</div>
 @endsection

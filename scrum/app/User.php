@@ -45,7 +45,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the project assigned to the user.
+     * Get the projects assigned to the user.
      */
     public function projects()
     {

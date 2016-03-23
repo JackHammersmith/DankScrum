@@ -4,11 +4,15 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="_token" content="{!! csrf_token() !!}"/>
 
 	<title>G18 DankScrum</title>
 
 	<!-- Fonts -->
 	<link href="{{ URL::asset('css/font-awesome.min.css') }}" rel='stylesheet' type='text/css'>
+	<script src="{{ URL::asset('js/jquery.min.js') }}"></script>
+    <script src="{{ URL::asset('js/ajax.js') }}"></script>
+    <link href="{{ URL::asset('css/custom.css') }}" rel='stylesheet' type='text/css'>
 
 
 	<!-- Styles -->
@@ -39,7 +43,7 @@
 			</button>
 
 			<!-- Branding Image -->
-            <a class="navbar-brand" href="{{ url('/tickets/my') }}">
+            <a class="navbar-brand" href="{{ url('/tickets') }}">
                 My Tickets
             </a>
 			<a class="navbar-brand" href="{{ url('/projects') }}">
@@ -82,7 +86,7 @@
 @yield('content')
 
 <!-- JavaScripts -->
-<script src="{{ URL::asset('js/jquery.min.js') }}"></script>
+
 <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
 {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
 </body>
