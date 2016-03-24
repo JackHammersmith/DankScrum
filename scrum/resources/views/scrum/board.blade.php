@@ -14,14 +14,17 @@
 
             // animation on drop
             onDrop: function ($item, container, _super) {
-
+                var project = {{ $project->id }};
                 var $clonedItem = $('<li/>').css({height: 0});
                 $item.before($clonedItem);
                 $clonedItem.animate({'height': $item.height()});
 
+                var allowed = true;
                 var position = $clonedItem.position();
                 if ($item.position().left < origPosition.left) {
-                    group.sortable("cancel");
+                    alert('nicht erlaubt!');
+                    //refreshBoard(project);
+                    allowed = false;
                 }
 
                 $item.animate(position, function () {
@@ -34,8 +37,11 @@
 
                 var jsonString = JSON.stringify(data, null, ' ');
                 //console.log(jsonString);
-                statusChange(jsonString);
-                var project = {{ $project->id }};
+                if (allowed){
+                    statusChange(jsonString);
+                }
+
+
                 refreshBoard(project);
             },
 

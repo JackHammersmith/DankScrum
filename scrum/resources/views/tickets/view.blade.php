@@ -54,7 +54,7 @@
                             <div class="formrow">
                                 <label for="ticket-status" class="control-label">Status</label>
 
-                                <select name="status_id" id="ticket-status">
+                                <select name="status" id="ticket-status">
                                     @foreach ($statuses as $status)
                                     <option value="{{ $status->id }}">{{ $status->title }}</option>
                                     @endforeach

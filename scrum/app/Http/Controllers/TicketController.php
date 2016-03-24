@@ -176,11 +176,11 @@ class TicketController extends Controller
         }
 
         if ($request->has('status')) {
-            $ticket->status = $request->status;
+            $ticket->status_id = $request->status;
         }
 
         if ($request->has('severity')) {
-            $ticket->severity = $request->severity;
+            $ticket->severity_id = $request->severity;
         }
 
         if ($request->has('priority')) {
@@ -188,7 +188,7 @@ class TicketController extends Controller
         }
 
         if ($request->has('ticket_type')) {
-            $ticket->ticket_type = $request->ticket_type;
+            $ticket->ticket_type_id = $request->ticket_type;
         }
 
         if ($request->has('description')) {

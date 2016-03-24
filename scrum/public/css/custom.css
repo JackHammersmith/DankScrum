@@ -41,7 +41,8 @@ ol.scrum li{
     list-style: none;
     height:80px;
     padding: 5px;
-    border:1px solid
+    border:1px solid;
+    margin:5px;
 }
 
 ol.scrum li.placeholder {
@@ -92,4 +93,8 @@ ol.noscrum li.placeholder:before {
 
 .ticket-box{
     min-height:50px;
+}
+
+#ticket-title{
+    background-color: #ddd;
 }
